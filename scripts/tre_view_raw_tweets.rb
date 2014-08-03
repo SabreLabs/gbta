@@ -1,13 +1,11 @@
 require "json"
 
-def valid_json?(json)
-  begin JSON.parse(json)
-    return true
-  rescue StandardError => e
-    return false
-  end
-end
+input_file = ARGV[0]
+output_file = ARGV[1]
 
-File.open(ARGV[0]).each do |line|
-  puts "#{line_num += 1} #{line}" if valid_json?(line)
-end
+tweets = []
+File.open(input_file).each{|line| tweets << line} 
+
+tre_view = {:data => tweets}
+# File.open(output_file, "w+"){|f| f.puts(valid_json)}
+puts JSON.generate(tre_view)
